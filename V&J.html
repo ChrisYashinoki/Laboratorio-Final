@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>V&J A Tu Medida</title>
+
+  <style>
+    /* ---------- COLORES PERSONALIZABLES ---------- */
+    :root {
+      --color-principal: #AA0144;   /* Cambia este color magenta principal */
+      --color-fondo: #ffffff;       /* Cambia el color de fondo de la página */
+      --color-texto: #333333;       /* Cambia el color del texto general */
+      --color-texto-claro: #ffffff; /* Color de texto sobre fondo oscuro */
+    }
+
+    /* ---------- ESTILOS GENERALES ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--color-principal);
+      color: var(--color-texto-claro);
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #cc3366; /* Puedes cambiar este tono si quieres un menú más claro/oscuro */
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--color-texto-claro);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      background-color: #880033;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .producto {
+      background-color: var(--color-fondo);
+      border: 2px solid var(--color-principal);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .producto img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .producto h3 {
+      color: var(--color-principal); /* Color del nombre del producto */
+    }
+
+    .precio {
+      color: var(--color-principal);
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin: 8px 0;
+    }
+
+    .btn-agregar, .btn-eliminar {
+      background-color: var(--color-principal); /* Botón agregar/eliminar del carrito */
+      color: white;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .btn-agregar:hover, .btn-eliminar:hover {
+      background-color: #880033;
+    }
+
+    footer {
+      background-color: var(--color-principal);
+      color: var(--color-texto-claro);
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    /* Ocultamiento de secciones según la navegación */
+    .seccion {
+      display: none;
+    }
+
+    .seccion.activa {
+      display: block;
+    }
+
+    /* Carrito de compras */
+    #lista-carrito li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+    }
+
+    #comprar-btn {
+      background-color: var(--color-principal);
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    #comprar-btn:hover {
+      background-color: #880033;
+    }
+
+    /* Responsive para móviles */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ---------- CABECERA DE LA TIENDA ---------- -->
+  <header>
+    <h1><!-- Cambia el nombre de tu tienda aquí -->Tienda de Ropa</h1>
+    <p><!-- Slogan o descripción corta -->Ropa Hecha a tu Medida</p>
+  </header>
+
+  <!-- ---------- MENÚ DE NAVEGACIÓN ---------- -->
+  <nav>
+    <a onclick="mostrarSeccion('inicio')">Inicio</a>
+    <a onclick="mostrarSeccion('productos')">Productos</a>
+    <a onclick="mostrarSeccion('contacto')">Contacto</a>
+    <a onclick="mostrarSeccion('carrito')">Carrito de Compras</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- ---------- SECCIÓN INICIO ---------- -->
+    <div id="inicio" class="seccion activa">
+      <h2>Sobre Nosotros</h2>
+      <p><!-- Personaliza esta sección con la historia, misión o valores de la tienda -->
+        Somos una tienda familiar dedicada a ofrecer ropa de calidad para toda la familia. Nos apasiona la moda, el diseño y el buen servicio. Cada prenda refleja dedicación y creatividad.
+      </p>
+    </div>
+
+    <!-- ---------- SECCIÓN PRODUCTOS ---------- -->
+    <div id="productos" class="seccion">
+      <h2>Nuestros Productos</h2>
+      <div class="productos">
+
+        <!-- PRODUCTO 1 -->
+        <div class="producto">
+          <img src="Imagenes/Camiseta Basica.jpeg" alt="Producto 1" />
+          <h3><!-- Nombre del producto -->Camiseta Básica</h3>
+          <p class="precio">$20.00</p>
+          <button class="btn-agregar" onclick="agregarAlCarrito('Camiseta Básica', 20.00)">Agregar al carrito</button>
+        </div>
+
+        <!-- PRODUCTO 2 -->
+        <div class="producto">
+          <img src="Imagenes/Camisa de Jean.webp" alt="Producto 2" />
+          <h3>Chaqueta de Jean</h3>
+          <p class="precio">$40.00</p>
+          <button class="btn-agregar" onclick="agregarAlCarrito('Chaqueta de Jean', 40.00)">Agregar al carrito</button>
+        </div>
+
+        <!-- PRODUCTO 3 -->
+        <div class="producto">
+          <img src="Imagenes/Pantalon Deportivo.png" alt="Producto 3" />
+          <h3>Pantalón Deportivo</h3>
+          <p class="precio">$25.00</p>
+          <button class="btn-agregar" onclick="agregarAlCarrito('Pantalón Deportivo', 25.00)">Agregar al carrito</button>
+        </div>
+
+        <!-- Puedes duplicar este bloque para agregar más productos -->
+      </div>
+    </div>
+
+    <!-- ---------- SECCIÓN CONTACTO ---------- -->
+    <div id="contacto" class="seccion">
+      <h2>Contacto</h2>
+      <p><!-- Cambia por tu número de contacto -->Teléfono: <strong>+34 123 456 789</strong></p>
+      <p><!-- Cambia por tu correo electrónico -->Email: <strong>info@tiendaropa.com</strong></p>
+    </div>
+
+    <!-- ---------- SECCIÓN CARRITO DE COMPRAS ---------- -->
+    <div id="carrito" class="seccion">
+      <h2>Carrito de Compras</h2>
+      <ul id="lista-carrito"></ul>
+      <p>Total: $<span id="total">0.00</span></p>
+      <button id="comprar-btn" onclick="comprar()">Comprar</button>
+    </div>
+
+  </div>
+
+  <!-- ---------- PIE DE PÁGINA ---------- -->
+  <footer>
+    <p><!-- Personaliza el mensaje de derechos de autor -->© 2025 Tienda de Ropa. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- ---------- SCRIPT PARA FUNCIONALIDAD ---------- -->
+  <script>
+    const carrito = [];
+    let total = 0;
+
+    function agregarAlCarrito(nombre, precio) {
+      const item = { nombre, precio, id: Date.now() };
+      carrito.push(item);
+      total += precio;
+      actualizarCarrito();
+    }
+
+    function eliminarDelCarrito(id) {
+      const index = carrito.findIndex(item => item.id === id);
+      if (index !== -1) {
+        total -= carrito[index].precio;
+        carrito.splice(index, 1);
+        actualizarCarrito();
+      }
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('lista-carrito');
+      lista.innerHTML = '';
+      carrito.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nombre} - $${item.precio.toFixed(2)}`;
+        const btn = document.createElement('button');
+        btn.textContent = 'Eliminar';
+        btn.className = 'btn-eliminar';
+        btn.onclick = () => eliminarDelCarrito(item.id);
+        li.appendChild(btn);
+        lista.appendChild(li);
+      });
+      document.getElementById('total').textContent = total.toFixed(2);
+    }
+
+    function comprar() {
+      // Cambia esta URL a tu página de procesamiento de compra
+      window.location.href = "file:///C:/Users/Usuario/Desktop/Proyecto%20Christopher/DatosEntrega.html";
+    }
+
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.seccion').forEach(seccion => {
+        seccion.classList.remove('activa');
+      });
+      document.getElementById(id).classList.add('activa');
+    }
+  </script>
+
+</body>
+</html>
